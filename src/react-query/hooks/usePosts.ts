@@ -8,21 +8,25 @@ interface Post {
   userId: number;
 }
 
-const usePosts = (userId: number | undefined) =>
+interface PostQuery {
+  page: number;
+  pageSize: number;
+}
+
+const usePosts = (query: PostQuery) =>
   useQuery<Post[], Error>({
-    // queryKey: 由静态和动态组成 -> "users","posts" 是静态, userId 是动态
-    // 用于唯一标识特定查询, 能够区分和管理不同的请求
-    // 如果 userId 发生变化, 那么将会重新刷新, 类似 useEffect 的 dependence
-    queryKey: userId ? ["users", userId, "posts"] : ["posts"],
+    queryKey: ["posts", query],
     queryFn: () =>
       axios
         .get("https://jsonplaceholder.typicode.com/posts", {
           params: {
-            userId,
+            _start: (query.page - 1) * query.pageSize, // 分页查询, 每一页最多有多少条发表笔记
+            _limit: query.pageSize,
           },
         })
         .then((res) => res.data),
     staleTime: 1 * 60 * 1000, // expired in 1 minute
+    keepPreviousData: true,// 为避免新数据加载时显示loading空白闪烁状态, React Query将会保持和显示当前的旧数据
   });
 
 export default usePosts;
