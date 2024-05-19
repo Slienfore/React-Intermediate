@@ -21,6 +21,9 @@ const TodoForm = () => {
 
         (todos) => [res, ...(todos || [])]
       );
+
+      // 添加成功后, 清除搜索框
+      if (ref.current) ref.current.value = "";
     },
   });
 
@@ -50,7 +53,9 @@ const TodoForm = () => {
           <input ref={ref} type="text" className="form-control" />
         </div>
         <div className="col">
-          <button className="btn btn-primary">Add</button>
+          <button className="btn btn-primary">
+            {addTodo.isLoading ? "loading..." : "Add"}
+          </button>
         </div>
       </form>
     </>
