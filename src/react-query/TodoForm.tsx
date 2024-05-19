@@ -7,7 +7,7 @@ const TodoForm = () => {
   // 获取当前应用程序中的 QueryClient实例， 进行Query缓存管理
   const queryClient = useQueryClient();
 
-  const addTodo = useMutation({
+  const addTodo = useMutation<Todo, Error, Todo>({
     mutationFn(todo: Todo) {
       return axios
         .post<Todo>("https://jsonplaceholder.typicode.com/todos", todo)
@@ -27,28 +27,33 @@ const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
+    <>
+      {addTodo.error && (
+        <div className="alert alert-danger">{addTodo.error.message}</div>
+      )}
 
-        if (ref.current?.value) {
-          addTodo.mutate({
-            id: 0,
-            title: ref.current?.value,
-            completed: false,
-            userId: 1,
-          });
-        }
-      }}
-      className="row mb-3"
-    >
-      <div className="col">
-        <input ref={ref} type="text" className="form-control" />
-      </div>
-      <div className="col">
-        <button className="btn btn-primary">Add</button>
-      </div>
-    </form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (ref.current?.value) {
+            addTodo.mutate({
+              id: 0,
+              title: ref.current?.value,
+              completed: false,
+              userId: 1,
+            });
+          }
+        }}
+        className="row mb-3"
+      >
+        <div className="col">
+          <input ref={ref} type="text" className="form-control" />
+        </div>
+        <div className="col">
+          <button className="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </>
   );
 };
 
