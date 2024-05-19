@@ -2,6 +2,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Todo } from "./useTodo";
 import axios from "axios";
 import { CACHE_KEY_TODOS } from "../constant";
+import APIClient from "../services/api-clicent";
+
+const apiClient = new APIClient<Todo>("/todos");
 
 // todoMutation 上下文类型限制
 interface AddTodoContext {
@@ -13,11 +16,7 @@ const useAddTodo = (onAdd: () => void) => {
   const queryClient = useQueryClient();
 
   return useMutation<Todo, Error, Todo, AddTodoContext>({
-    mutationFn(todo: Todo) {
-      return axios
-        .post<Todo>("https://jsonplaceholder.typicode.com/todos", todo)
-        .then((res) => res.data);
-    },
+    mutationFn: apiClient.post,
     // Before Executing the mutation === unMutate callback
     onMutate(newTodo: Todo) {
       // 保存更新前数据, 方便失败回退
