@@ -1,15 +1,17 @@
-import { useReducer, useState } from "react";
-import tasksReducer from "./reducers/tasksReducer";
+import { useContext } from "react";
+import TasksContext from "./contexts/tasksContext";
 
 const TaskList = () => {
-  const [tasks, dispatch] = useReducer(tasksReducer, []);
+  const { tasks, dispatch } = useContext(TasksContext);
 
   return (
     <>
       <button
         onClick={() =>
-          dispatch(
-            { type: "ADD", task: { id: Date.now(), title: "Task " + Date.now() }})
+          dispatch({
+            type: "ADD",
+            task: { id: Date.now(), title: "Task " + Date.now() },
+          })
         }
         className="btn btn-primary my-3"
       >
