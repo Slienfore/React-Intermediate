@@ -4,20 +4,21 @@ import HomePage from "./state-management/HomePage";
 import NavBar from "./state-management/NavBar";
 import TasksContext from "./state-management/contexts/tasksContext";
 import tasksReducer from "./state-management/reducers/tasksReducer";
+import authReducer from "./state-management/reducers/authReducer";
+import AuthContext from "./state-management/contexts/authContext";
 
 function App() {
-  // 将这个Reducer传入到Context进行集中管理, 通过 useContext 进行组件通信
-  const [tasks, dispatch] = useReducer(tasksReducer, []);
+  const [tasks, tasksDispatch] = useReducer(tasksReducer, []);
+  const [user, authDispatch] = useReducer(authReducer, "");
 
   return (
     <>
-      {/* share this two object in a component tree */}
-      {/* TasksContext like a truck transporting this "Reducer" box */}
-      {/* access this box anywhere in our component tree -> using context hook*/}
-      <TasksContext.Provider value={{ tasks, dispatch }}>
-        <NavBar></NavBar>
-        <HomePage></HomePage>
-      </TasksContext.Provider>
+      <AuthContext.Provider value={{ user, dispatch: authDispatch }}>
+        <TasksContext.Provider value={{ tasks, dispatch: tasksDispatch }}>
+          <NavBar></NavBar>
+          <HomePage></HomePage>
+        </TasksContext.Provider>
+      </AuthContext.Provider>
     </>
   );
 }
