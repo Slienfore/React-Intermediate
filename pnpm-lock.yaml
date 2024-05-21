@@ -23,6 +23,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.3.1(react@18.3.1)
+  react-router-dom:
+    specifier: 6.10.0
+    version: 6.10.0(react-dom@18.3.1)(react@18.3.1)
   simple-zustand-devtools:
     specifier: 1.1.0
     version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(zustand@4.3.7)
@@ -509,6 +512,11 @@ packages:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==, tarball: https://registry.npmmirror.com/@popperjs/core/-/core-2.11.8.tgz}
     dev: false
 
+  /@remix-run/router@1.5.0:
+    resolution: {integrity: sha512-bkUDCp8o1MvFO+qxkODcbhSqRa6P2GXgrGZVpt0dCXNW2HCSCqYI0ZoAqEOSAjRWmmlKcYgFvN4B4S+zo/f8kg==, tarball: https://registry.npmmirror.com/@remix-run/router/-/router-1.5.0.tgz}
+    engines: {node: '>=14'}
+    dev: false
+
   /@tanstack/match-sorter-utils@8.15.1:
     resolution: {integrity: sha512-PnVV3d2poenUM31ZbZi/yXkBu3J7kd5k2u51CGwwNojag451AjTH9N6n41yjXz2fpLeewleyLBmNS6+HcGDlXw==, tarball: https://registry.npmmirror.com/@tanstack/match-sorter-utils/-/match-sorter-utils-8.15.1.tgz}
     engines: {node: '>=12'}
@@ -873,6 +881,29 @@ packages:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==, tarball: https://registry.npmmirror.com/react-refresh/-/react-refresh-0.14.2.tgz}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-router-dom@6.10.0(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-E5dfxRPuXKJqzwSe/qGcqdwa18QiWC6f3H3cWXM24qj4N0/beCIf/CWTipop2xm7mR0RCS99NnaqPNjHtrAzCg==, tarball: https://registry.npmmirror.com/react-router-dom/-/react-router-dom-6.10.0.tgz}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.5.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-router: 6.10.0(react@18.3.1)
+    dev: false
+
+  /react-router@6.10.0(react@18.3.1):
+    resolution: {integrity: sha512-Nrg0BWpQqrC3ZFFkyewrflCud9dio9ME3ojHCF/WLsprJVzkq3q3UeEhMCAW1dobjeGbWgjNn/PVF6m46ANxXQ==, tarball: https://registry.npmmirror.com/react-router/-/react-router-6.10.0.tgz}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.5.0
+      react: 18.3.1
+    dev: false
 
   /react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==, tarball: https://registry.npmmirror.com/react/-/react-18.3.1.tgz}

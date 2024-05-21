@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import App from "./App";
 import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./routing/routes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +25,8 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      {/* 让路由根据路由规则, 决定呈现的是哪一个组件 */}
+      <RouterProvider router={router} />
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
