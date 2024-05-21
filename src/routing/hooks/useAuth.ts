@@ -1,5 +1,7 @@
-const useAuth = () => ({ user: { id: 1, name: 'Mosh' } });
+// assume login
+// const useAuth = () => ({ user: { id: 1, name: "Mosh" } });
 
-// const useAuth = () => ({ user: null });
+// assume not login
+const useAuth = () => ({ user: null });
 
 export default useAuth;
