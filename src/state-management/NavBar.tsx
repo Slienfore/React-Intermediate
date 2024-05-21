@@ -5,7 +5,10 @@ import useCounterStore from "./counter/store";
 
 const NavBar = () => {
   const { tasks, dispatch } = useContext(TasksContext);
-  const { counter } = useCounterStore();
+  
+  const counter = useCounterStore((store) => store.counter);
+  console.log("NavBar Render!!");
+  
 
   return (
     <nav className="navbar d-flex justify-content-between">
