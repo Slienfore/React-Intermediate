@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import UsersPage from "./UsersPage";
 import ErrorPage from "./ErrorPage";
 import LoginPage from "./LoginPage";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -15,14 +16,17 @@ const router = createBrowserRouter([
     children: [
       // index => 默认呈现组件
       { index: true, element: <HomePage /> },
-
       { path: "/login", element: <LoginPage /> },
-
+    ],
+  },
+  // 私人路由 -> 不需要定义 path
+  // 作为保护性路由组件, 用于包裹需要受保护的子路由
+  {
+    element: <PrivateRoutes />,
+    children: [
       {
         path: "users",
         element: <UsersPage />,
-
-        // 子路由使用相对路径 -> 不需写前缀 /users
         children: [{ path: ":id", element: <UserDetail /> }],
       },
     ],
